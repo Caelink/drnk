@@ -8,27 +8,32 @@
 
 import UIKit
 
-enum DrnkSpeeds: Int {
-    case lightweight = 10
-    case midweight = 8
-    case heavyweight = 6
-    case slav = 4
+enum DrnkSpeeds: String {
+    case lightweight
+    case midweight
+    case heavyweight
+    case slav
 }
 
-let speedNames: Dictionary<DrnkSpeeds, String> = [
-    .lightweight: "Lightweight",
-    .midweight: "Midweight",
-    .heavyweight: "Heavyweight",
-    .slav: "Slav",
+let timeLimits: Dictionary<DrnkSpeeds, TimeInterval> = [
+    .lightweight: 10,
+    .midweight: 8,
+    .heavyweight: 6,
+    .slav: 4,
 ]
 
+let updateInterval: TimeInterval = 0.015
+
 class ViewController: UIViewController {
+    // MARK: Properties
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var drnkButton: UIButton!
     var timer: Timer? = nil
-    var curSpeed: Int = DrnkSpeeds.lightweight.rawValue
+    var timeLimit: TimeInterval = timeLimits[.lightweight] ?? 10
+    var timeDrinking: Float = 0.0
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 //        guard let progressBar = progressBar,
@@ -37,33 +42,46 @@ class ViewController: UIViewController {
 //            return
 //        }
         
-        setupProgress()
+        startTimer()
     }
 
+    // MARK: Actions
     @IBAction func drnkTouchUpInside(_ sender: Any) {
-        setupProgress()
+        startTimer()
     }
     
     @IBAction func settingsTouchUpInside(_ sender: Any) {
         showChoices(of: [.lightweight, .midweight, .heavyweight, .slav])
     }
     
-    func setupProgress(from percent: Float = 0.0) {
+    // MARK: Effects
+    func startTimer(from percent: Float = 0.0) {
         timer?.invalidate()
-        var timeSinceStart: Float = percent
+        var timeSinceStart: TimeInterval = TimeInterval(percent * Float(timeLimit))
         weak var weakSelf = self
-        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {(T) in
-            guard let progressBar = weakSelf?.progressBar,
-            let curSpeed = weakSelf?.curSpeed else {
-                return
+        timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true, block: {(T) in
+            guard let strongSelf = weakSelf,
+                strongSelf.update(with: timeSinceStart, of: strongSelf.timeLimit),
+                timeSinceStart < strongSelf.timeLimit else {
+                    T.invalidate()
+                    return
             }
             
-            progressBar.progress = timeSinceStart / Float(curSpeed)
-            timeSinceStart = timeSinceStart + 0.01
-            if !(timeSinceStart < Float(curSpeed)) {
-                T.invalidate()
-            }
+            timeSinceStart = timeSinceStart + updateInterval
         })
+    }
+    
+    func update(with timeSinceStart: TimeInterval, of total: TimeInterval) -> Bool {
+        guard let messageLabel = messageLabel,
+            let progressBar = self.progressBar else {
+            return false
+        }
+        
+        progressBar.progress = Float(timeSinceStart / timeLimit)
+        let timeLeft = max(timeLimit - timeSinceStart, 0)
+        messageLabel.text = String(format: "%.2f", timeLeft)
+        
+        return true
     }
     
     func showChoices(of options: [DrnkSpeeds]) {
@@ -73,10 +91,11 @@ class ViewController: UIViewController {
         
         for drnkSpeed in options {
             weak var weakSelf = self
-            alertController.addAction(UIAlertAction(title: speedNames[drnkSpeed],
+            alertController.addAction(UIAlertAction(title: drnkSpeed.rawValue,
                                           style: .default,
                                           handler: { (action) -> Void in
-                weakSelf?.curSpeed = drnkSpeed.rawValue
+                                            weakSelf?.timeLimit = timeLimits[drnkSpeed] ?? 10
+                                            weakSelf?.startTimer(from: 1.0)
             }))
         }
         
