@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Drnk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4OG-a5-iYJ">
+                                <rect key="frame" x="315" y="50" width="30" height="30"/>
+                                <state key="normal" title="⚙️"/>
+                                <connections>
+                                    <action selector="settingsTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y6k-SP-sum"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QQO-2B-sTg">
+                                <rect key="frame" x="100" y="342.5" width="174" height="2"/>
+                            </progressView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncn-hb-zjw">
+                                <rect key="frame" x="166" y="314" width="42" height="20.5"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KhO-2A-O3b">
+                                <rect key="frame" x="40" y="304.5" width="295" height="30"/>
+                                <state key="normal" title="DRNK"/>
+                                <connections>
+                                    <action selector="drnkTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2eT-RH-hV9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ncn-hb-zjw" firstAttribute="centerX" secondItem="QQO-2B-sTg" secondAttribute="centerX" id="4eE-J5-CVQ"/>
+                            <constraint firstItem="4OG-a5-iYJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Eul-e1-wnh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KhO-2A-O3b" secondAttribute="trailing" constant="40" id="Fy5-0x-pTo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4OG-a5-iYJ" secondAttribute="trailing" constant="30" id="Id9-Ke-0kP"/>
+                            <constraint firstItem="QQO-2B-sTg" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ViB-Gj-N2m"/>
+                            <constraint firstItem="QQO-2B-sTg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="efK-y8-bL8"/>
+                            <constraint firstItem="QQO-2B-sTg" firstAttribute="top" secondItem="ncn-hb-zjw" secondAttribute="bottom" constant="8" symbolic="YES" id="gx9-D0-FRs"/>
+                            <constraint firstItem="QQO-2B-sTg" firstAttribute="top" secondItem="KhO-2A-O3b" secondAttribute="bottom" constant="8" symbolic="YES" id="hK9-Nz-lBZ"/>
+                            <constraint firstItem="QQO-2B-sTg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="vkA-CV-Nek"/>
+                            <constraint firstItem="KhO-2A-O3b" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wF1-WT-Cyp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="drnkButton" destination="KhO-2A-O3b" id="OiW-IR-D6M"/>
+                        <outlet property="messageLabel" destination="ncn-hb-zjw" id="Iaj-6q-NXW"/>
+                        <outlet property="progressBar" destination="QQO-2B-sTg" id="VwP-AV-rOV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
