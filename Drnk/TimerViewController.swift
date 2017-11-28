@@ -12,19 +12,19 @@ enum DrnkSpeeds: String {
     case lightweight
     case midweight
     case heavyweight
-    case slav
+    case crazy
 }
 
 let timeLimits: Dictionary<DrnkSpeeds, TimeInterval> = [
     .lightweight: 10,
     .midweight: 8,
     .heavyweight: 6,
-    .slav: 4,
+    .crazy: 4,
 ]
 
 let updateInterval: TimeInterval = 0.015
 
-class ViewController: UIViewController {
+class TimerViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var messageLabel: UILabel!
@@ -36,11 +36,6 @@ class ViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        guard let progressBar = progressBar,
-//        let messageLabel = messageLabel,
-//        let drnkButton = drnkButton else {
-//            return
-//        }
         
         startTimer()
     }
@@ -51,7 +46,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func settingsTouchUpInside(_ sender: Any) {
-        showChoices(of: [.lightweight, .midweight, .heavyweight, .slav])
+        showChoices(of: [.lightweight, .midweight, .heavyweight, .crazy])
     }
     
     // MARK: Effects
