@@ -12,7 +12,7 @@
         <!--Timer View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TimerViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="TimerViewController" id="BYZ-38-t0r" customClass="TimerViewController" customModule="Drnk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="315" y="50" width="30" height="30"/>
                                 <state key="normal" title="⚙️"/>
                                 <connections>
-                                    <action selector="settingsTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y6k-SP-sum"/>
+                                    <action selector="settingsTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vRe-X7-mOQ"/>
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QQO-2B-sTg">
@@ -31,7 +31,7 @@
                                 <rect key="frame" x="40" y="304.5" width="295" height="30"/>
                                 <state key="normal" title="DRNK"/>
                                 <connections>
-                                    <action selector="drnkTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2eT-RH-hV9"/>
+                                    <action selector="drnkTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pqi-M9-qvB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncn-hb-zjw">
@@ -59,9 +59,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="drnkButton" destination="KhO-2A-O3b" id="OiW-IR-D6M"/>
-                        <outlet property="messageLabel" destination="ncn-hb-zjw" id="Iaj-6q-NXW"/>
-                        <outlet property="progressBar" destination="QQO-2B-sTg" id="VwP-AV-rOV"/>
+                        <outlet property="drnkButton" destination="KhO-2A-O3b" id="NU8-qm-OR3"/>
+                        <outlet property="messageLabel" destination="ncn-hb-zjw" id="ITA-rs-sce"/>
+                        <outlet property="progressBar" destination="QQO-2B-sTg" id="J4X-CI-alR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -67,7 +67,7 @@ class TimerViewController: UIViewController {
     }
     
     func update(with timeSinceStart: TimeInterval, of total: TimeInterval) -> Bool {
-        guard let messageLabel = messageLabel,
+        guard let messageLabel = self.messageLabel,
             let progressBar = self.progressBar else {
             return false
         }
